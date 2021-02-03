@@ -1,0 +1,24 @@
+<div class="main">
+    <p class="head">{{matchDetails.match_name}} <span class="right day">Yesterday</span></p><br>
+    <table class="table">
+        <tr>
+            <td>
+                <img class="flag" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560867113/1200px-Flag_of_India.svg.png" alt="">&emsp;<span>{{matchDetails.team_1[0].name}}</span><br><br>
+                <p class="score">{{matchDetails.team_1[0].totalScores+'/'+matchDetails.team_1[0].totalWickets}}</p>
+            </td>
+            <td class="right1">
+                <span>{{matchDetails.team_2[0].name}}</span>&emsp;<img class="flag" src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560867126/2000px-Flag_of_Pakistan.svg.png" alt=""><br><br>
+                <p class="score pak">{{matchDetails.team_2[0].totalScores+'/'+matchDetails.team_2[0].totalWickets}}</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-primary" href="/">
+                Back to home
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Create Team
+                
+                <a class="btn btn-primary float-right" href="/">
+                    Back to home
+                </a>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="myForm">
+                <div class="form-group">
+                    <label for="teamName1">Team 1 *</label>
+                    <input type="name" class="form-control" id="teamName1" placeholder="Enter team 1 name" formControlName="name" required [disabled]="teamOne">
+                    <span class="text-danger" *ngIf="(myForm.controls.name.touched) && myForm.controls.name.errors?.required">
+                        Name is required
+                    </span>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="createAndAddPlayers(myForm,1)" [disabled]="!myForm.valid || teamOne">Add Players</button>
+            </form>
+            <div class="col-md-12 p-2" *ngIf="teamOne">
+                <h3>{{'Totally selected '+teamOneArr.length +' players.'}}</h3>
+                <ul class="list-group">
+                    <li *ngFor="let player of players" style="cursor: pointer;" (click)="addTeamPlayer(player,1)" class="list-group-item {{isSelectedPlayer(player._id,1)}}">{{player.name}}</li>
+                </ul>
+                <button type="button" class="btn btn-primary mt-2" (click)="addPlayers2Team(teamOne, teamOneArr, 1)" [disabled]="teamOneArr.length < 11">Select Players</button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form [formGroup]="myForm2">
+                <div class="form-group">
+                    <label for="teamNAme2">Team 2 *</label>
+                    <input type="name" class="form-control" id="teamNAme2" placeholder="Enter team 2 name" formControlName="name" required [disabled]="teamTwo">
+                    <span class="text-danger" *ngIf="(myForm2.controls.name.touched) && myForm2.controls.name.errors?.required">
+                        Name is required
+                    </span>
+                </div>
+                <button type="button" class="btn btn-primary" (click)="createAndAddPlayers(myForm2,2)" [disabled]="!myForm2.valid || teamTwo">Add Players</button>
+            </form>
+            <div class="col-md-12 p-2" *ngIf="teamTwo">
+                <h3>{{'Totally selected '+teamTwoArr.length +' players.'}}</h3>
+                <ul class="list-group">
+                    <li *ngFor="let player of players" style="cursor: pointer;" (click)="addTeamPlayer(player,2)" class="list-group-item {{isSelectedPlayer(player._id,2)}}">{{player.name}}</li>
+                </ul>
+                <button type="button" class="btn btn-primary mt-2" (click)="addPlayers2Team(teamTwo, teamTwoArr, 2)" [disabled]="teamTwoArr.length < 11">Select Players</button>
+            </div>
+        </div>
+    </div>
+</div>

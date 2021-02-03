@@ -1,0 +1,62 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Submit Match Score
+                <a class="btn btn-primary float-right" href="/">
+                    Back to home
+                </a>
+            </h2>
+        </div>
+    </div>
+    <div class="row" *ngIf="scoreId">
+        <div class="col-md-12">
+            <a [routerLink]="['/view-score-board', scoreId]">{{'/view-score-board/'+scoreId}}</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            
+            <div class="form-group">
+                <label for="name">Match Name:</label>
+                <input type="name" class="form-control" id="name" placeholder="Enter match name" required [(ngModel)]="name">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="col-md-12">
+                <label for="team1">Select Team 1:</label>
+                <select class="form-control" id="exampleFormControlSelect1" (change)="listSelectedTeamPlayers(1)" [(ngModel)]="team1Select">
+                    <option *ngFor="let team of teamList" value="{{team._id}}" class="{{team2Select==team._id ? 'd-none':''}}">{{team.name}}</option>
+                </select>
+            </div>
+            <div class="col-md-12 mt-2">
+                <ul class="list-group">
+                    <li *ngFor="let player of teamOnePlayers;let in=index" class="list-group-item">{{player.playerName}} : <input type="number" class="form-control col-md-2 float-right" (keyup)="getScore($event,1,player)" [(ngModel)]="teamOneScores[in]" value="0"/></li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <label for="team2">Team 1 Wickets:</label>
+                <input type="text" class="form-control" [(ngModel)]="teamOneWickets">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <div class="col-md-12">
+                <label for="team2">Select Team 2:</label>
+                <select class="form-control" id="team2" (change)="listSelectedTeamPlayers(2)" [(ngModel)]="team2Select">
+                    <option *ngFor="let team of teamList" value="{{team._id}}" class="{{team1Select==team._id ? 'd-none':''}}">{{team.name}}</option>
+                </select>
+            </div>
+            <div class="col-md-12 mt-2">
+                <ul class="list-group">
+                    <li *ngFor="let player of teamTwoPlayers;let in=index" class="list-group-item">{{player.playerName}} : <input type="number" class="form-control col-md-2 float-right" (keyup)="getScore($event,2,player)" [(ngModel)]="teamTwoScores[in]" value="0" /></li>
+                </ul>
+            </div>
+            <div class="col-md-12">
+                <label for="team2">Team 2 Wickets:</label>
+                <input type="text" class="form-control" [(ngModel)]="teamTwoWickets">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <button type="button" class="btn btn-primary float-right" (click)="addScoresToPlayers()">Add Scores</button>
+        </div>
+    </div>
+</div>
